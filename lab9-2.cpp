@@ -6,30 +6,49 @@
 #include <iomanip>
 using namespace std;
 
-int main()
-{
-    // Declare an array to store test scores
-    const int SIZE = 5; // Assume there are 5 test scores
-    int testScores[SIZE];
-    int sum = 0;
-    double average;
+intmain() {
+double calculateMonthlyPayment(double loanAmount, double annualInterestRate, int loanTermYears) {
+    double monthlyInterestRate = annualInterestRate / 12 / 100; // Convert annual rate to monthly and decimal
+    int totalPayments = loanTermYears * 12; // Total number of monthly payments
 
-    // Input test scores
-    for (int i = 0; i < SIZE; i++) {
-        cout << "Enter score " << (i + 1) << ": ";
-        cin >> testScores[i];
-    }
+    // Monthly payment formula
+    double monthlyPayment = (loanAmount * monthlyInterestRate * pow(1 + monthlyInterestRate, totalPayments)) /
+                            (pow(1 + monthlyInterestRate, totalPayments) - 1);
+    return monthlyPayment;
+}
 
-    // Calculate the sum of the scores
-    for (int i = 0; i < SIZE; i++) {
-        sum += testScores[i];
-    }
+int main() {
+    // Variables for the first car loan
+    double loanAmount1, annualInterestRate1;
+    int loanTermYears1;
 
-    // Calculate the average
-    average = static_cast<double>(sum) / SIZE;
+    // Variables for the second car loan
+    double loanAmount2, annualInterestRate2;
+    int loanTermYears2;
 
-    // Output the sum and average
-    cout << "The sum of the scores is: " << sum << endl;
-    cout << "The average score is: " << average << endl;
+    // Input for the first car loan
+    cout << "Enter loan amount for the first car: ";
+    cin >> loanAmount1;
+    cout << "Enter annual interest rate for the first car (%): ";
+    cin >> annualInterestRate1;
+    cout << "Enter loan term for the first car (in years): ";
+    cin >> loanTermYears1;
+
+    // Input for the second car loan
+    cout << "Enter loan amount for the second car: ";
+    cin >> loanAmount2;
+    cout << "Enter annual interest rate for the second car (%): ";
+    cin >> annualInterestRate2;
+    cout << "Enter loan term for the second car (in years): ";
+    cin >> loanTermYears2;
+
+    // Calculate monthly payments
+    double monthlyPayment1 = calculateMonthlyPayment(loanAmount1, annualInterestRate1, loanTermYears1);
+    double monthlyPayment2 = calculateMonthlyPayment(loanAmount2, annualInterestRate2, loanTermYears2);
+
+    // Display the results
+    cout << "Monthly payment for the first car: $" << monthlyPayment1 << endl;
+    cout << "Monthly payment for the second car: $" << monthlyPayment2 << endl;
+
     return 0;
 }//end of main function    
